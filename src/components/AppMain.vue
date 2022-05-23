@@ -30,7 +30,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 102px);
+  min-height: calc(100vh - 102px);
   background-color: black;
 }
 
@@ -41,6 +41,5 @@ main {
   padding: 1rem;
   width: 98%;
   height: 98%;
-  border: 1px solid rebeccapurple;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeader @search="userResearch" />
+    <AppHeader @search="userResearch($event)" />
     <AppMain :filmsArray="filmsArray" />
   </div>
 </template>
@@ -24,25 +24,20 @@ export default {
   },
 
   methods: {
-    userResearch(searchText){
-      return filteredInput
-    }
-  },
-
-  created() {
-    axios
+    userResearch(event){
+      axios
       .get("https://api.themoviedb.org/3/search/movie", {
         params: {
           api_key: "6b6f49a0543af0887649fa643a8df95b",
-          query: filteredInput,
+          query: event,
         },
       })
       .then((resp) => {
         this.filmsArray = resp.data.results;
         console.log(this.filmsArray);
       });
+    }
   },
-      
 };
 </script>
 

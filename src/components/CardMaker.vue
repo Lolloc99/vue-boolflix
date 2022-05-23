@@ -29,8 +29,8 @@ export default {
   border: 1px solid #e2090c;
   color: white;
   height: 300px;
-  width: 200px;
-  margin: 0 1rem;
+  width: calc(100% / 7);
+  margin: 1rem;
   padding: 0.4rem;
 }
 
