@@ -33,7 +33,6 @@ export default {
 main {
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: calc(100vh - 102px);
   background-color: black;
 }
