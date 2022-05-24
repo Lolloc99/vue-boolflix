@@ -1,7 +1,10 @@
 <template>
   <main>
     <div class="container">
-      <CardMaker v-for="(item, index) in filmsArray" :key="index" :filmsItem="item" />
+      <h2>Film</h2>
+      <CardMaker v-for="item in filmsArray" :key="item.id" :object="item" />
+      <h2>Serie Tv</h2>
+      <CardMaker v-for="item in seriesArray" :key="item.id" :object="item" />
     </div>
   </main>
 </template>
@@ -17,6 +20,7 @@ export default {
 
   props: {
     filmsArray: Array,
+    seriesArray: Array,
   },
 
   data: function () {
@@ -41,5 +45,12 @@ main {
   padding: 1rem;
   width: 98%;
   height: 98%;
+}
+
+h2 {
+  width: 100%;
+  font-size: 2rem;
+  margin: 1rem;
+  color: white;
 }
 </style>

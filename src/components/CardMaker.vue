@@ -1,9 +1,11 @@
 <template>
   <ul class="card">
-      <li>Titolo: {{ filmsItem.title }}</li>
-      <li>Titolo Originale: {{ filmsItem.original_title }}</li>
-      <li>Lingua: {{ filmsItem.original_language }}</li>
-      <li>Voto: {{ filmsItem.vote_average }}</li>
+      <li>Titolo: {{ object.title ? object.title : object.name }}</li>
+      <li>Titolo Originale: {{ object.original_title ? object.original_title : object.original_name }}</li>
+      <!-- <li class="fib fi-gr"></li> -->
+      <!-- <li><span class="fi fi-gr"></span></li> -->
+      <li>Lingua: {{ object.original_language }}</li>
+      <li>Voto: {{ object.vote_average }}</li>
   </ul>
 </template>
 
@@ -12,13 +14,15 @@ export default {
   name: "CardMaker",
 
   props: {
-    filmsItem: Object,
+    object: Object,
   },
 
   data: function () {
     return {
-      
     };
+  },
+
+  methods: {
   },
 };
 </script>
@@ -29,7 +33,7 @@ export default {
   border: 1px solid #e2090c;
   color: white;
   height: 300px;
-  width: calc(100% / 7);
+  width: calc(100% / 4 - 2rem);
   margin: 1rem;
   padding: 0.4rem;
 }

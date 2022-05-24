@@ -30,6 +30,7 @@ header {
   border-bottom: 1px solid lightgrey;
 
   h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #e2090c;
   }
 }

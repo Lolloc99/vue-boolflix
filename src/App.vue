@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppHeader @search="userResearch($event)" />
-    <AppMain :filmsArray="filmsArray" />
+    <AppMain :filmsArray="filmsArray" :seriesArray="seriesArray" />
   </div>
 </template>
 
@@ -20,6 +20,7 @@ export default {
   data: function () {
     return {
       filmsArray: [],
+      seriesArray: [],
     };
   },
 
@@ -36,6 +37,18 @@ export default {
         this.filmsArray = resp.data.results;
         console.log(this.filmsArray);
       });
+
+      axios
+      .get("https://api.themoviedb.org/3/search/tv", {
+        params: {
+          api_key: "6b6f49a0543af0887649fa643a8df95b",
+          query: event,
+        },
+      })
+      .then((resp) => {
+        this.seriesArray = resp.data.results;
+        console.log(this.seriesArray);
+      });
     }
   },
 };
@@ -43,4 +56,5 @@ export default {
 
 <style lang="scss">
 @import "./style/common.scss";
+// @import "~flag-icons/sass/flag-icons.scss";
 </style>
