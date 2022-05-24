@@ -2,7 +2,9 @@
   <ul class="card">
     <li>
       <img
-        :src="`http://image.tmdb.org/t/p/w300/${object.poster_path ? object.poster_path : object.backdrop_path}`"
+        :src="`http://image.tmdb.org/t/p/w300/${
+          object.poster_path ? object.poster_path : object.backdrop_path
+        }`"
         :alt="object.title ? object.title : object.name"
       />
     </li>
@@ -42,7 +44,12 @@
     </li>
     <li>
       <h5>Voto:</h5>
-      {{ object.vote_average }}
+      <div v-if="this.vote != 0">
+        <i class="fas fa-star" v-for="(item, index) in this.vote" :key="index"></i>
+      </div>
+      <div v-else>
+        Nessun voto
+      </div>
     </li>
   </ul>
 </template>
@@ -56,7 +63,9 @@ export default {
   },
 
   data: function () {
-    return {};
+    return {
+      vote: Math.ceil(this.object.vote_average / 2),
+    };
   },
 
   methods: {},
@@ -65,6 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~flag-icons/css/flag-icons.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 .card {
   border: 1px solid #e2090c;
@@ -83,5 +93,11 @@ ul {
     font-size: 1rem;
     margin: 0.3rem 0;
   }
+
+  i {
+    color: gold;
+  } 
+
 }
+
 </style>
