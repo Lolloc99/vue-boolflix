@@ -2,7 +2,26 @@
   <ul class="card">
       <li><h3>Titolo:</h3> {{ object.title ? object.title : object.name }}</li>
       <li><h3>Titolo Originale:</h3> {{ object.original_title ? object.original_title : object.original_name }}</li>
-      <li><h4>Lingua: </h4>{{object.original_language}} <span :class="`fi fi-${object.original_language}`"></span></li>
+      <li>
+        <div v-if="object.original_language === 'it'">
+          <h4>Lingua: </h4><span :class="`fi fi-it`"></span>
+        </div>
+        <div v-else-if="object.original_language === 'es'">
+          <h4>Lingua: </h4><span :class="`fi fi-es`"></span>
+        </div>
+        <div v-else-if="object.original_language === 'en'">
+          <h4>Lingua: </h4><span :class="`fi fi-gb`"></span>
+        </div>
+        <div v-else-if="object.original_language === 'ja'">
+          <h4>Lingua: </h4><span :class="`fi fi-jp`"></span>
+        </div>
+        <div v-else-if="object.original_language === 'fr'">
+          <h4>Lingua: </h4><span :class="`fi fi-fr`"></span>
+        </div>
+        <div v-else>
+          <h4>Lingua: </h4>{{ object.original_language }}
+        </div>
+      </li>
       <li><h5>Voto:</h5> {{ object.vote_average }}</li>
   </ul>
 </template>
