@@ -56,5 +56,4 @@ export default {
 
 <style lang="scss">
 @import "./style/common.scss";
-// @import "~flag-icons/sass/flag-icons.scss";
 </style>

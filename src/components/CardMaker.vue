@@ -1,11 +1,9 @@
 <template>
   <ul class="card">
-      <li>Titolo: {{ object.title ? object.title : object.name }}</li>
-      <li>Titolo Originale: {{ object.original_title ? object.original_title : object.original_name }}</li>
-      <!-- <li class="fib fi-gr"></li> -->
-      <!-- <li><span class="fi fi-gr"></span></li> -->
-      <li>Lingua: {{ object.original_language }}</li>
-      <li>Voto: {{ object.vote_average }}</li>
+      <li><h3>Titolo:</h3> {{ object.title ? object.title : object.name }}</li>
+      <li><h3>Titolo Originale:</h3> {{ object.original_title ? object.original_title : object.original_name }}</li>
+      <li><h4>Lingua: </h4>{{object.original_language}} <span :class="`fi fi-${object.original_language}`"></span></li>
+      <li><h5>Voto:</h5> {{ object.vote_average }}</li>
   </ul>
 </template>
 
@@ -28,6 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~flag-icons/css/flag-icons.css";
 
 .card {
   border: 1px solid #e2090c;
