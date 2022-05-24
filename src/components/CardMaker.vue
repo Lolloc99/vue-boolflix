@@ -1,61 +1,69 @@
 <template>
   <li class="card">
-      <div class="div-img">
-        <img
-          :src="`http://image.tmdb.org/t/p/w300/${
-            object.poster_path ? object.poster_path : object.backdrop_path
-          }`"
-          :alt="object.title ? object.title : object.name"
-        />
-      </div>
+    <!-- Immagine -->
+    <div class="div-img">
+      <img
+        :src="`http://image.tmdb.org/t/p/w300/${
+          object.poster_path ? object.poster_path : object.backdrop_path
+        }`"
+        :alt="object.title ? object.title : object.name"
+      />
+    </div>
 
-      <div>
-        <h3>Titolo:</h3>
-        {{ object.title ? object.title : object.name }}
-      </div>
+    <!-- Titolo -->
+    <div>
+      <h3>Titolo:</h3>
+      {{ object.title ? object.title : object.name }}
+    </div>
 
-      <div>
-        <h3>Titolo Originale:</h3>
-        {{ object.original_title ? object.original_title : object.original_name }}
-      </div>
+    <!-- Titolo Originale -->
+    <div>
+      <h3>Titolo Originale:</h3>
+      {{ object.original_title ? object.original_title : object.original_name }}
+    </div>
 
-      <div>
-        <div v-if="object.original_language === 'it'">
-          <h4>Lingua:</h4>
-          <span :class="`fi fi-it`"></span>
-        </div>
-        <div v-else-if="object.original_language === 'es'">
-          <h4>Lingua:</h4>
-          <span :class="`fi fi-es`"></span>
-        </div>
-        <div v-else-if="object.original_language === 'en'">
-          <h4>Lingua:</h4>
-          <span :class="`fi fi-gb`"></span>
-        </div>
-        <div v-else-if="object.original_language === 'ja'">
-          <h4>Lingua:</h4>
-          <span :class="`fi fi-jp`"></span>
-        </div>
-        <div v-else-if="object.original_language === 'fr'">
-          <h4>Lingua:</h4>
-          <span :class="`fi fi-fr`"></span>
-        </div>
-        <div v-else>
-          <h4>Lingua:</h4>
-          {{ object.original_language }}
-        </div>
+    <!-- Lingua -->
+    <div>
+      <div v-if="object.original_language === 'it'">
+        <h4>Lingua:</h4>
+        <span :class="`fi fi-it`"></span>
       </div>
+      <div v-else-if="object.original_language === 'es'">
+        <h4>Lingua:</h4>
+        <span :class="`fi fi-es`"></span>
+      </div>
+      <div v-else-if="object.original_language === 'en'">
+        <h4>Lingua:</h4>
+        <span :class="`fi fi-gb`"></span>
+      </div>
+      <div v-else-if="object.original_language === 'ja'">
+        <h4>Lingua:</h4>
+        <span :class="`fi fi-jp`"></span>
+      </div>
+      <div v-else-if="object.original_language === 'fr'">
+        <h4>Lingua:</h4>
+        <span :class="`fi fi-fr`"></span>
+      </div>
+      <div v-else>
+        <h4>Lingua:</h4>
+        {{ object.original_language }}
+      </div>
+    </div>
 
-      <div>
-        <h5>Voto:</h5>
-        <div v-if="this.vote != 0">
-          <i class="fas fa-star" v-for="(item, index) in this.vote" :key="index"></i>
-        </div>
-        <div v-else>
-          Nessun voto
-        </div>
+    <!-- Voto -->
+    <div>
+      <h5>Voto:</h5>
+      <div v-if="this.vote != 0">
+        <span class="gold" v-for="(item, index) in this.vote" :key="index"
+          ><i class="fas fa-star"></i
+        ></span>
+        <span v-for="(item, index) in this.voidStar" :key="index"
+          ><i class="fas fa-star"></i
+        ></span>
       </div>
-  </li> 
+      <div v-else>Nessun voto</div>
+    </div>
+  </li>
 </template>
 
 <script>
@@ -69,6 +77,7 @@ export default {
   data: function () {
     return {
       vote: Math.ceil(this.object.vote_average / 2),
+      voidStar: 5 - Math.ceil(this.object.vote_average / 2),
     };
   },
 
@@ -93,7 +102,6 @@ export default {
   min-height: 715px;
 }
 
-
 li {
   display: flex;
   flex-direction: column;
@@ -107,8 +115,7 @@ li {
   min-height: 452px;
 }
 
-i {
+.gold {
   color: gold;
 }
-
 </style>
