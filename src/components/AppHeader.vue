@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>BOOLFLIX</h1>
+    <img src="../assets/logo-netflix-fake.png" alt="Fakeflix">
     <div class="searchbar">
       <input type="text" placeholder="Scrivi un titolo..." v-model="inputText">
       <button @click="$emit('search', inputText)">Cerca</button>
@@ -32,6 +32,10 @@ header {
   h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #e2090c;
+  }
+
+  img {
+    width: 10%;
   }
 }
 
