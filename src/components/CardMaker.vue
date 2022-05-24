@@ -1,7 +1,7 @@
 <template>
   <li class="card">
-    <!-- Immagine -->
-    <div class="div-img">
+    <!-- Front-card -->
+    <div class="front">
       <img
         :src="`http://image.tmdb.org/t/p/w300/${
           object.poster_path ? object.poster_path : object.backdrop_path
@@ -10,50 +10,51 @@
       />
     </div>
 
-    <!-- Titolo -->
-    <div>
-      <h3>Titolo:</h3>
-      {{ object.title ? object.title : object.name }}
-    </div>
+    <!-- Retro-card -->
+    <div class="retro hide">
+      <!-- Titolo -->
+      <div>
+        <h3>Titolo:</h3>
+        {{ object.title ? object.title : object.name }}
+      </div>
 
-    <!-- Titolo Originale -->
-    <div>
-      <h3>Titolo Originale:</h3>
-      {{ object.original_title ? object.original_title : object.original_name }}
-    </div>
+      <!-- Titolo Originale -->
+      <div>
+        <h3>Titolo Originale:</h3>
+        {{ object.original_title ? object.original_title : object.original_name }}
+      </div>
 
-    <!-- Lingua -->
-    <div>
-      <div v-if="object.original_language === 'it'">
-        <h4>Lingua:</h4>
-        <span :class="`fi fi-it`"></span>
+      <!-- Lingua -->
+      <div>
+        <div v-if="object.original_language === 'it'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-it`"></span>
+        </div>
+        <div v-else-if="object.original_language === 'es'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-es`"></span>
+        </div>
+        <div v-else-if="object.original_language === 'en'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-gb`"></span>
+        </div>
+        <div v-else-if="object.original_language === 'ja'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-jp`"></span>
+        </div>
+        <div v-else-if="object.original_language === 'fr'">
+          <h4>Lingua:</h4>
+          <span :class="`fi fi-fr`"></span>
+        </div>
+        <div v-else>
+          <h4>Lingua:</h4>
+          {{ object.original_language }}
+        </div>
       </div>
-      <div v-else-if="object.original_language === 'es'">
-        <h4>Lingua:</h4>
-        <span :class="`fi fi-es`"></span>
-      </div>
-      <div v-else-if="object.original_language === 'en'">
-        <h4>Lingua:</h4>
-        <span :class="`fi fi-gb`"></span>
-      </div>
-      <div v-else-if="object.original_language === 'ja'">
-        <h4>Lingua:</h4>
-        <span :class="`fi fi-jp`"></span>
-      </div>
-      <div v-else-if="object.original_language === 'fr'">
-        <h4>Lingua:</h4>
-        <span :class="`fi fi-fr`"></span>
-      </div>
-      <div v-else>
-        <h4>Lingua:</h4>
-        {{ object.original_language }}
-      </div>
-    </div>
 
-    <!-- Voto -->
-    <div>
-      <h5>Voto:</h5>
-      <div v-if="this.vote != 0">
+      <!-- Voto -->
+      <div>
+        <h5>Voto:</h5>
         <span class="gold" v-for="(item, index) in this.vote" :key="index"
           ><i class="fas fa-star"></i
         ></span>
@@ -61,7 +62,12 @@
           ><i class="fas fa-star"></i
         ></span>
       </div>
-      <div v-else>Nessun voto</div>
+
+      <!-- Overview -->
+      <div>
+        <h3>Overview:</h3>
+        {{ object.overview }}
+      </div>
     </div>
   </li>
 </template>
@@ -97,25 +103,43 @@ export default {
   color: white;
   margin: 1rem;
   padding: 0.4rem;
-  max-width: 315px;
-  min-width: 315px;
-  min-height: 715px;
+  min-width: 310px;
 }
 
 li {
   display: flex;
   flex-direction: column;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 1rem;
   margin: 0.3rem 0;
 }
 
-.div-img {
+li:hover .retro {
+  display: block;
+  max-width: 300px;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+li:hover .front {
+  display: none;
+}
+
+.front {
   min-height: 452px;
 }
 
 .gold {
   color: gold;
+}
+
+.hide {
+  display: none;
+}
+
+h3,
+h4,
+h5 {
+  color: #9e0b0d;
 }
 </style>
