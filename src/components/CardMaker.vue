@@ -3,10 +3,14 @@
     <!-- Front-card -->
     <div class="front">
       <img
-        :src="`http://image.tmdb.org/t/p/w300/${
-          object.poster_path ? object.poster_path : object.backdrop_path
-        }`"
+        v-if="object.poster_path"
+        :src="`http://image.tmdb.org/t/p/w300/${object.poster_path}`"
         :alt="object.title ? object.title : object.name"
+      />
+      <img
+        v-else
+        src="../assets/img/no_poster.jpg"
+        alt="Poster_not_available"
       />
     </div>
 
@@ -21,7 +25,9 @@
       <!-- Titolo Originale -->
       <div>
         <h3>Titolo Originale:</h3>
-        {{ object.original_title ? object.original_title : object.original_name }}
+        {{
+          object.original_title ? object.original_title : object.original_name
+        }}
       </div>
 
       <!-- Lingua -->
@@ -55,10 +61,10 @@
       <!-- Voto -->
       <div>
         <h5>Voto:</h5>
-        <span class="gold" v-for="(item, index) in this.vote" :key="index"
+        <span class="gold" v-for="(item, index) in this.vote" :key="'A' + index"
           ><i class="fas fa-star"></i
         ></span>
-        <span v-for="(item, index) in this.voidStar" :key="index"
+        <span v-for="(item, index) in this.voidStar" :key="'B' + index"
           ><i class="fas fa-star"></i
         ></span>
       </div>
@@ -103,30 +109,40 @@ export default {
   color: white;
   margin: 1rem;
   padding: 0.4rem;
-  min-width: 310px;
+  min-width: calc(100% / 5 - 2.8rem);
 }
 
 li {
   display: flex;
   flex-direction: column;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 1rem;
   margin: 0.3rem 0;
 }
 
+.front {
+  min-height: 452px;
+
+  img {
+    width: 300px;
+  }
+}
+
+.retro {
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 452px;
+  min-height: 452px;
+  overflow-y: auto;
+}
+
 li:hover .retro {
   display: block;
-  max-width: 300px;
-  max-height: 450px;
-  overflow-y: auto;
 }
 
 li:hover .front {
   display: none;
-}
-
-.front {
-  min-height: 452px;
 }
 
 .gold {

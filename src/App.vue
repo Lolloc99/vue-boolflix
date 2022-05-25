@@ -19,6 +19,7 @@ export default {
 
   data: function () {
     return {
+      apikey: "6b6f49a0543af0887649fa643a8df95b",
       filmsArray: [],
       seriesArray: [],
     };
@@ -26,25 +27,22 @@ export default {
 
   methods: {
     userResearch(event) {
+      const options = {
+        params: {
+          api_key: this.apikey,
+          query: event,
+        },
+      };
+
       axios
-        .get("https://api.themoviedb.org/3/search/movie", {
-          params: {
-            api_key: "6b6f49a0543af0887649fa643a8df95b",
-            query: event,
-          },
-        })
+        .get("https://api.themoviedb.org/3/search/movie", options)
         .then((resp) => {
           this.filmsArray = resp.data.results;
           console.log(this.filmsArray);
         });
 
       axios
-        .get("https://api.themoviedb.org/3/search/tv", {
-          params: {
-            api_key: "6b6f49a0543af0887649fa643a8df95b",
-            query: event,
-          },
-        })
+        .get("https://api.themoviedb.org/3/search/tv", options)
         .then((resp) => {
           this.seriesArray = resp.data.results;
           console.log(this.seriesArray);

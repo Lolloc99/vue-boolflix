@@ -1,11 +1,15 @@
 <template>
   <main>
-    <ul class="container">
-      <li class="separator"><h2>Film</h2></li>
-      <CardMaker v-for="item in filmsArray" :key="item.id" :object="item" />
-      <li class="separator"><h2>Serie Tv</h2></li>
-      <CardMaker v-for="item in seriesArray" :key="item.id" :object="item" />
-    </ul>
+    <div class="container">
+      <h2>Film</h2>
+      <ul>
+        <CardMaker v-for="item in filmsArray" :key="item.id" :object="item" />
+      </ul>
+      <h2>Serie Tv</h2>
+      <ul>
+        <CardMaker v-for="item in seriesArray" :key="item.id" :object="item" />
+      </ul>
+    </div>
   </main>
 </template>
 
@@ -49,10 +53,12 @@ main {
 h2 {
   font-size: 2rem;
   margin: 1rem;
-  color: white;
+  color: #9e0b0d;
+  width: 100%;
 }
 
-.separator {
-  width: 100%;
+ul {
+  display: flex;
+  flex-flow: row wrap;
 }
 </style>

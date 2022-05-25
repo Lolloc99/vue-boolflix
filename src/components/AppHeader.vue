@@ -1,8 +1,12 @@
 <template>
   <header>
-    <img src="../assets/logo-netflix-fake.png" alt="Fakeflix">
+    <img src="../assets/img/logo-netflix-fake.png" alt="Fakeflix" />
     <div class="searchbar">
-      <input type="text" placeholder="Scrivi un titolo..." v-model="inputText">
+      <input
+        type="text"
+        placeholder="Scrivi un titolo..."
+        v-model="inputText"
+      />
       <button @click="$emit('search', inputText)">Cerca</button>
     </div>
   </header>
@@ -30,7 +34,8 @@ header {
   border-bottom: 1px solid lightgrey;
 
   h1 {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
     color: #e2090c;
   }
 
