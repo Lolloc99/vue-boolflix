@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppHeader @search="userResearch($event)" />
-    <AppMain :filmsArray="filmsArray" :seriesArray="seriesArray" />
+    <AppMain :filmsArray="filmsArray" :seriesArray="seriesArray"/>
   </div>
 </template>
 
@@ -22,6 +22,8 @@ export default {
       apikey: "6b6f49a0543af0887649fa643a8df95b",
       filmsArray: [],
       seriesArray: [],
+      // movieGenresArray: [],
+      // tvGenresArray: [],
     };
   },
 
@@ -51,7 +53,21 @@ export default {
           this.seriesArray = resp.data.results;
           console.log('Series Array:', this.seriesArray);
         })
-      ;      
+      ;
+
+      // axios
+      //   .get("https://api.themoviedb.org/3/genre/movie/list", options)
+      //   .then((response) => {
+      //     this.movieGenresArray = response.data.genres;
+      //   })
+      // ;
+
+      // axios
+      //   .get("https://api.themoviedb.org/3/genre/tv/list", options)
+      //   .then((response) => {
+      //     this.tvGenresArray = response.data.genres;
+      //   })
+      // ;
     }
   },
 };

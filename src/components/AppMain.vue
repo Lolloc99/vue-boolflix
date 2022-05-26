@@ -7,7 +7,7 @@
       </ul>
       <h2>Serie Tv</h2>
       <ul>
-        <CardMaker v-for="item in seriesArray" :key="item.id" :object="item" />
+        <CardMaker v-for="item in seriesArray" :key="item.id" :object="item"/>
       </ul>
     </div>
   </main>

@@ -1,7 +1,7 @@
 <template>
   <li class="card">
     <!-- Front-card -->
-    <div class="front">
+    <section class="front">
       <img
         v-if="object.poster_path"
         :src="`http://image.tmdb.org/t/p/w300/${object.poster_path}`"
@@ -12,10 +12,10 @@
         src="../assets/img/no_poster.jpg"
         alt="Poster_not_available"
       />
-    </div>
+    </section>
 
     <!-- Retro-card -->
-    <div class="retro hide">
+    <section class="retro hide">
       <!-- Titolo -->
       <div>
         <h3>Titolo:</h3>
@@ -82,7 +82,15 @@
           <li v-for="(item, index) in actorsArray" :key="index">{{ item.name }}</li>
         </ul>
       </div>
-    </div>
+
+      <!-- Generi -->
+      <div>
+        <h3>Generi:</h3>
+        <ul>
+          <li v-for="(item, index) in object.genre_ids" :key="index"><h6>Genere {{ index + 1 }}: </h6> {{ item }}</li>
+        </ul>
+      </div>
+    </section>
   </li>
 </template>
 
@@ -104,13 +112,25 @@ export default {
       apikey: "6b6f49a0543af0887649fa643a8df95b",
 
       actorsArray: [],
+      movieGenresArray: [],
+      tvGenresArray: [],
     };
   },
+
+  created: {
+    
+  },
+
+  // {
+  //   "id": 10759,
+  //   "name": "Action & Adventure"
+  // },
 
   mounted() {
     const options = {
         params: {
-          api_key: this.apikey
+          api_key: this.apikey,
+          query: "ciao",
         },
       };
 
@@ -124,6 +144,20 @@ export default {
         .then((response) => {
           let movieCast = response.data.cast;
           this.actorsArray = movieCast.slice(0, 5);
+        })
+      ;
+
+      axios
+        .get("https://api.themoviedb.org/3/genre/movie/list", options)
+        .then((response) => {
+          this.movieGenresArray = response.data.genres;
+        })
+      ;
+
+      axios
+        .get("https://api.themoviedb.org/3/genre/tv/list", options)
+        .then((response) => {
+          this.tvGenresArray = response.data.genres;
         })
       ;
   },
@@ -190,5 +224,10 @@ h3,
 h4,
 h5 {
   color: #9e0b0d;
+}
+
+h6 {
+  font-size: .8rem;
+  color: #865556;
 }
 </style>
