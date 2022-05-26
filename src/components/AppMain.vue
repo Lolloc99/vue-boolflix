@@ -3,7 +3,7 @@
     <div class="container">
       <h2>Film</h2>
       <ul>
-        <CardMaker v-for="item in filmsArray" :key="item.id" :object="item" />
+        <CardMaker v-for="item in filmsArray" :key="item.id" :object="item"/>
       </ul>
       <h2>Serie Tv</h2>
       <ul>
@@ -37,7 +37,7 @@ export default {
 main {
   display: flex;
   justify-content: center;
-  min-height: calc(100vh - 102px);
+  min-height: calc(100vh - 100px);
   background-color: black;
 }
 

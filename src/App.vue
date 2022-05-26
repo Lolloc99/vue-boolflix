@@ -38,16 +38,21 @@ export default {
         .get("https://api.themoviedb.org/3/search/movie", options)
         .then((resp) => {
           this.filmsArray = resp.data.results;
-          console.log(this.filmsArray);
-        });
+          this.filmsArray.map((film) => {
+            film.type = 'movie';
+          });
+          console.log('Films Array:', this.filmsArray);
+        })
+      ;
 
       axios
         .get("https://api.themoviedb.org/3/search/tv", options)
         .then((resp) => {
           this.seriesArray = resp.data.results;
-          console.log(this.seriesArray);
-        });
-    },
+          console.log('Series Array:', this.seriesArray);
+        })
+      ;      
+    }
   },
 };
 </script>

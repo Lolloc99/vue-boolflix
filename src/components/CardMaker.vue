@@ -72,13 +72,23 @@
       <!-- Overview -->
       <div>
         <h3>Overview:</h3>
-        {{ object.overview }}
+        {{ object.overview ? object.overview : "Overview non disponibile!"}}
+      </div>
+
+      <!-- Attori -->
+      <div>
+        <h3>Actors:</h3>
+        <ul>
+          <li v-for="(item, index) in actorsArray" :key="index">{{ item.name }}</li>
+        </ul>
       </div>
     </div>
   </li>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CardMaker",
 
@@ -90,10 +100,33 @@ export default {
     return {
       vote: Math.ceil(this.object.vote_average / 2),
       voidStar: 5 - Math.ceil(this.object.vote_average / 2),
+
+      apikey: "6b6f49a0543af0887649fa643a8df95b",
+
+      actorsArray: [],
     };
   },
 
-  methods: {},
+  mounted() {
+    const options = {
+        params: {
+          api_key: this.apikey
+        },
+      };
+
+      let type = 'tv';
+      if (this.object.type === 'movie') {
+        type = 'movie';
+      }
+
+      axios
+        .get(`https://api.themoviedb.org/3/${type}/${this.object.id}/credits`, options)
+        .then((response) => {
+          let movieCast = response.data.cast;
+          this.actorsArray = movieCast.slice(0, 5);
+        })
+      ;
+  },
 };
 </script>
 

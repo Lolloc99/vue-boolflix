@@ -32,6 +32,7 @@ header {
   padding: 2rem;
   background-color: black;
   border-bottom: 1px solid lightgrey;
+  height: 100px;
 
   h1 {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
@@ -40,7 +41,7 @@ header {
   }
 
   img {
-    width: 10%;
+    width: 150px;
   }
 }
 
